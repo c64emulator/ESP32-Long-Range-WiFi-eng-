@@ -2,7 +2,7 @@
 
 These are the first tests with espressif's proprietary **802.11 LR (Long Range)** protocol of the ESP32.
 The devices used are two [Wemos lolin32](https://wiki.wemos.cc/products:lolin32:lolin32), old ones.
-![](https://wiki.wemos.cc/_media/products:lolin32:lolon32_v1.0.0_1_16x9.jpg)
+![](wemos_lolin32_t.webp)
 
 The scenario is the following:
 
