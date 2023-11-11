@@ -8,7 +8,7 @@
 #include <WiFiUdp.h>
 #include <esp_wifi.h>
 
-const char* ssid = "kkkkk";//AP ssid
+const char* ssid = "kkkkk"; // AP ssid
 const char* password = "12345678";//AP password
 
 WiFiUDP udp;
@@ -30,12 +30,14 @@ const char *toStr( wl_status_t status ) {
 void setup() {
     Serial.begin( 115200 );
     Serial.println( "Slave" );
-    pinMode(5, OUTPUT);//bultin Led, for debug
+    pinMode(5, OUTPUT); // bultin Led, for debug
+    delay(1000);  // need delay
 
-    //We start STA mode with LR protocol
-    //This ssid is not visible whith our regular devices
-    WiFi.mode( WIFI_STA );//for STA mode
-    //if mode LR config OK
+    // We start STA mode with LR protocol
+    // This ssid is not visible whith our regular devices
+    WiFi.mode( WIFI_STA ); // for STA mode
+    delay(1000);  // need delay
+    // if mode LR config OK
     int a= esp_wifi_set_protocol( WIFI_IF_STA, WIFI_PROTOCOL_LR );
     if (a==0)
     {
@@ -44,17 +46,19 @@ void setup() {
       Serial.print(a);
       Serial.println(" , Mode LR OK!");
     }
-    else//if some error in LR config
+    else // if some error in LR config
     {
       Serial.println(" ");
       Serial.print("Error = ");
       Serial.print(a);
       Serial.println(" , Error in Mode LR!");
     }
-      
-    WiFi.begin(ssid, password);//this ssid is not visible
 
-    //Wifi connection, we connect to master
+    delay(1000);  // need delay
+    WiFi.begin(ssid, password); // this ssid is not visible
+    delay(1000);  // need delay
+
+    // Wifi connection, we connect to master
     while (WiFi.status() != WL_CONNECTED) 
     {
       delay(500);
@@ -64,12 +68,12 @@ void setup() {
     Serial.println("WiFi connected");
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
-  
+    delay(1000);  // need delay
     udp.begin( 8888 );
 }
 
 void loop() {
-     //problems whith connection
+     // problems whith connection
     if ( WiFi.status() != WL_CONNECTED ) 
     {
         Serial.println( "|" );
@@ -85,13 +89,13 @@ void loop() {
         Serial.print( "Connected " );
         Serial.println( WiFi.localIP() );
     }
-    //if connection OK, execute command 'b' from master
+    // if connection OK, execute command 'b' from master
     int size = udp.parsePacket();
     if ( size == 0 )
         return;
     char c = udp.read();
     if ( c == 'b' ){
-        digitalWrite(5, !digitalRead(5));//toggle Led
+        digitalWrite(5, !digitalRead(5)); // toggle Led
         Serial.println("RECEIVED!");
         Serial.println(millis());
     }
