@@ -20,6 +20,7 @@ To achieve a good range the two units must be in line of sight. The lolin32 ante
 In a first test, which surely could be improved, I achieved 294 m of range. I hope to overcome this distance by a few meters. 
 
 Update **346 m**.
+
 ![](https://pbs.twimg.com/media/DiDnwA8X4AAGyLf.jpg)
 
 It is to be expected that with external or directional antennas the 1 kilometer indicated by espressif could be reached.
