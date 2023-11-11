@@ -15,13 +15,13 @@ Every time the 'b' command arrives, the LED connected to GPIO5 changes state. If
 
 To achieve a good range the two units must be in line of sight. The lolin32 antennas are of the [MIFA](https://en.wikipedia.org/wiki/Inverted-F_antenna) type and their maximum radiation is in this direction:
 
-![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC79ql3CHAhfLjbrxUMksoLZ9WpQKKgsQRn848KdDWiLN4QdE_5A)
+![](antenna.png)
 
 In a first test, which surely could be improved, I achieved 294 m of range. I hope to overcome this distance by a few meters. 
 
-Update **346 m**.
+Update: **346 m!**.
 
-![](https://pbs.twimg.com/media/DiDnwA8X4AAGyLf.jpg)
+![](DiDnwA8X4AAGyLf.jpg)
 
 It is to be expected that with external or directional antennas the 1 kilometer indicated by espressif could be reached.
 
