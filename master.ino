@@ -8,21 +8,24 @@
 #include <WiFiUdp.h>
 #include <esp_wifi.h>
 
-const char* ssid = "kkkkk";//AP ssid
-const char* password = "12345678";//AP password
-const char* ssidRouter = "MySSID";//STA router ssid
-const char* passwordRouter = "MyPASSWORD";//STA router password
+const char* ssid = "kkkkk"; // AP ssid
+const char* password = "12345678"; // AP password
+const char* ssidRouter = "MySSID"; // STA router ssid
+const char* passwordRouter = "MyPASSWORD"; // STA router password
 WiFiUDP udp;
 
 void setup() {
-    pinMode(5, OUTPUT);//builtin Led, for debug
+    pinMode(5, OUTPUT);  // builtin Led, for debug
     digitalWrite(5, HIGH);
     Serial.begin( 115200 );
     Serial.println( "Master" );
+    delay(1000);  // need delay 
 
-    //first, we start STA mode and connect to router
+    // first, we start STA mode and connect to router
     WiFi.mode( WIFI_AP_STA );
+    delay(1000);  // need delay 
     WiFi.begin(ssidRouter,passwordRouter); 
+    delay(1000);  // need delay 
     
     //Wifi connection
     while (WiFi.status() != WL_CONNECTED) 
@@ -34,25 +37,27 @@ void setup() {
     Serial.println("Router WiFi connected");
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
+    delay(1000);  // need delay 
   
-    //second, we start AP mode with LR protocol
-    //This AP ssid is not visible whith our regular devices
-    WiFi.mode( WIFI_AP );//for AP mode
-    //here config LR mode
+    // second: we start AP mode with LR protocol
+    // This AP ssid is not visible whith our regular devices
+    WiFi.mode( WIFI_AP );  //for AP mode
+    // here config LR mode
     int a= esp_wifi_set_protocol( WIFI_IF_AP, WIFI_PROTOCOL_LR );
     Serial.println(a);
+    delay(1000);  // need delay
     WiFi.softAP(ssid, password);
     Serial.println( WiFi.softAPIP() );
-    Serial.println("#");//for debug
-    delay( 1000 );
+    Serial.println("#");  // for debug
+    delay(1000);  // need delay
     digitalWrite(5, LOW); 
     udp.begin( 8888 );
 }
 
 void loop() 
 {
-    udp.beginPacket( { 192, 168, 4, 255 }, 8888 );//send a broadcast message
-    udp.write( 'b' );//the payload
+    udp.beginPacket( { 192, 168, 4, 255 }, 8888 ); // send a broadcast message
+    udp.write( 'b' ); // the payload
     digitalWrite(5, !digitalRead(5));
     
     if ( !udp.endPacket() ){
@@ -64,7 +69,7 @@ void loop()
           Serial.println("SEND IT!!"); 
     }     
     
-    delay( 1000 );//wait a second for the next message
+    delay( 1000 ); // wait a second for the next message
 }
 
 
