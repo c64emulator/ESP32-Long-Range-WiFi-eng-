@@ -1,7 +1,7 @@
 # ESP32-Long-Range-WiFi
 
 These are the first tests with espressif's proprietary **802.11 LR (Long Range)** protocol of the ESP32.
-The devices used are two [Wemos lolin32](https://wiki.wemos.cc/products:lolin32:lolin32), old ones.
+The devices used are two [Wemos lolin32](https://wiki.wemos.cc/products:lolin32:lolin32) (old ones), based on ESP32-WROOM-32.
 ![](wemos_lolin32_t.webp)
 
 The scenario is the following:
